@@ -1,0 +1,106 @@
+PROBLEM STATEMENTPoints: 50
+Find the number that contain more number of zero's.
+
+You are given an array of n values. Print a number which had maximum number of zeroes. If their are no zeroes then print -1.
+
+Note: If there are multiple numbers with same number of zeroes then print the Maximum number among them.
+
+Input:
+
+The first line of input contains an integer N denoting the number of Elements. The second line consists of N spaced integers.
+
+Output:
+
+Print the number with maximum number of zeroes.
+
+Constraints:
+
+1<=N<=1000
+
+0<=A[i]<=100000
+
+Sample 1:
+
+Input:
+
+5
+
+60 10 3000 9999 200
+
+Output:
+
+3000
+
+Sample 2:
+
+Input:
+
+6
+
+60 10 3000 9999 200 4000
+
+Output:
+
+4000
+
+SAMPLE INPUT 
+5
+12 34 56 78 99
+SAMPLE OUTPUT 
+-1
+Explanation
+Input:
+
+No.of elements : 5
+
+Elements: 12 34 56 78 99
+
+Output:
+
+As there is no elements having 0's print -1
+
+SOLUTION:
+
+import java.util.*;
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner s = new Scanner(System.in);
+        
+        int n = Integer.parseInt(s.nextLine());
+        
+        String nums[] = s.nextLine().split(" ");
+        
+        String l = "";
+        int maxZ = 0;
+        
+        for(int i = 0; i < nums.length; i++){
+            int zero = 0;
+            String snum[] = nums[i].split("");
+            
+	    //count number of zeros in present number
+            for(int j = 0; j < snum.length; j++){
+                if(snum[j].equals("0"))
+                    zero++;
+            }
+            if(zero == 0)
+                zero = -1;
+            else if(zero > maxZ){
+                l = nums[i];
+                maxZ = zero;
+            }
+            else if(zero == maxZ){
+                if(Integer.parseInt(nums[i]) > Integer.parseInt(l)){
+                    l = nums[i];
+                }
+            }
+            
+            
+        }
+        
+        if(l.length() == 0)
+            System.out.println(-1);
+        else
+            System.out.println(l);
+    }
+}
